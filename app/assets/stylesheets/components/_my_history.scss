@@ -1,0 +1,188 @@
+.my-history-div{
+  display:flex;
+  justify-content:space-around;
+}
+.div-left-my-history{
+  background-color:rgb(254, 250, 244);
+  text-align:center;
+  padding-top: 80px;
+  padding-right: 80px;
+  padding-left: 30px;
+}
+
+.div-right-my-history{
+  padding:60px 180px 60px 0px;
+  background-color:rgb(254, 250, 244);
+}
+
+.image-my-history{
+  border:25px solid white;
+  width:450px;
+  z-index:1000;
+  position:relative
+}
+
+.title-my-history{
+  font-family:$font-title;
+  font-size:80px;
+}
+
+.sous-title-my-history{
+  font-size:10px;
+  font-family:$font-sous-title
+}
+
+.content-my-history{
+  font-family:$font-sous-title;
+  font-size:14px;
+}
+
+.block-orange-derriere{
+  position: absolute;
+  height: 100%;
+  width: 400px;
+  background-color:rgba(236, 159, 46,.4);
+  right:0px;
+  z-index:1;
+}
+
+.hr_my_history{
+  width:200px
+}
+
+.btn-about-me-my-history{
+  border:1px solid rgb(236, 159, 46);
+  padding: 10px 25px;
+  color:black;
+  display:inline-block;
+  margin-top: 20px;
+  font-family:$font-btn;
+  &:hover{
+    color:white;
+    background-color:black;
+    text-decoration:none;
+    border:none;
+  }
+}
+@media (min-width: 100px) and (max-width: 575px) {
+  .my-history-div{
+  display:block;
+  }
+  .block-orange-derriere{
+  display: none;
+  }
+  .image-my-history{
+  width:80%;
+  margin-top: 10px;
+  }
+  .div-right-my-history{
+    width:100%;
+    padding: 10px;
+    display:flex;
+    justify-content:center;
+  }
+  .div-left-my-history{
+  padding-top: 30px;
+  padding-right: 30px;
+  padding-left: 30px;
+  }
+  .hr_my_history{
+  width:80px
+  }
+  .title-my-history{
+  font-family:$font-title;
+  font-size:30px;
+  }
+  .content-my-history{
+  font-family:$font-sous-title;
+  font-size:12px;
+  }
+}
+@media (min-width: 576px) and (max-width: 768px) {
+  .my-history-div{
+  display:block;
+  }
+  .block-orange-derriere{
+  display: none;
+  }
+  .image-my-history{
+  width:80%;
+  margin-top: 10px;
+  }
+  .div-right-my-history{
+    width:100%;
+    padding: 10px;
+    display:flex;
+    justify-content:center;
+  }
+  .div-left-my-history{
+  padding-top: 30px;
+  padding-right: 30px;
+  padding-left: 30px;
+  }
+  .hr_my_history{
+  width:100px
+  }
+  .title-my-history{
+  font-family:$font-title;
+  font-size:30px;
+  }
+  .content-my-history{
+  font-family:$font-sous-title;
+  font-size:14px;
+  }
+}
+@media (min-width: 768px) and (max-width: 992px) {
+  .title-my-history{
+  font-family:$font-title;
+  font-size:40px;
+  }
+  .image-my-history{
+  width:300px;
+  border:15px solid white;
+  }
+  .div-right-my-history{
+  padding:40px 100px 40px 0px;
+  background-color:rgb(254, 250, 244);
+  }
+  .div-left-my-history{
+  background-color:rgb(254, 250, 244);
+  text-align:center;
+  padding-top: 30px;
+  padding-right: 40px;
+  padding-left: 40px;
+  }
+  .block-orange-derriere{
+  width: 250px;
+  }
+  .hr_my_history{
+  width:150px
+  }
+  .content-my-history{
+  font-family:$font-sous-title;
+  font-size:14px;
+  }
+}
+@media (min-width: 992px) and (max-width: 1200px) {
+  .title-my-history{
+  font-family:$font-title;
+  font-size:50px;
+  }
+  .image-my-history{
+  width:350px;
+  border:20px solid white;
+  }
+  .block-orange-derriere{
+  width: 350px;
+  }
+  .div-left-my-history{
+  background-color:rgb(254, 250, 244);
+  text-align:center;
+  padding-top: 30px;
+  padding-right: 30px;
+  padding-left: 30px;
+  }
+}
+@media (min-width: 1200px){
+
+}

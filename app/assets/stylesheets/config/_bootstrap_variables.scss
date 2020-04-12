@@ -4,7 +4,7 @@
 // 3. You can override them below!
 
 // General style
-$font-family-sans-serif:  $body-font;
+
 $headings-font-family:    $headers-font;
 $body-bg:                 $light-gray;
 $font-size-base: 1rem;
@@ -16,6 +16,7 @@ $success:    $green;
 $info:       $yellow;
 $danger:     $red;
 $warning:    $orange;
+$primary-site-color:rgb(236, 159, 46);
 
 // Buttons & inputs' radius
 $border-radius:    2px;
