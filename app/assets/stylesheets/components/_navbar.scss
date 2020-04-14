@@ -34,7 +34,7 @@ margin-bottom:0px;
 
 #link-navbar{
   font-size:18px;
-  font-family: $font-sous-title;
+  //font-family: $font-sous-title;
   font-size:24px;
   color:black;
   &:hover,&:focus,&:active{
@@ -49,6 +49,14 @@ margin-bottom:0px;
 }
 a{
   transition: all .5s;
+}
+.navbar-head{
+  background-color:black;
+  color:white;
+  &:hover{
+    background-color:black;
+    color:white;
+  }
 }
 //    MEDIAS
 
