@@ -7,6 +7,8 @@ class RecettesController < ApplicationController
   end
 
   def show
+    @recettes = Recette.all
+    authorize @recettes
     authorize @recette
   end
 

@@ -1,1 +1,67 @@
-<%= @recette.title %>
+
+<h1 class="text-center title-recettes">Recettes</h1>
+
+<div style="background-color: white">
+  <div class="container">
+    <div class="container-divs-right-left">
+      <div class="div-cards" >
+        <div class="card">
+          <h1 class="text-center title-index-recette"><%= link_to @recette.title, recette_path(@recette),class: "title_recette"%></h1>
+          <div>
+            <ul class="list-infos-card">
+              <li class="item-list-infos-card"><% d = @recette.created_at %> <%= d.strftime("%b %d,%Y") %></li>
+              <li class="item-list-infos-card"><%= @recette.redirection %></li>
+              <li class="item-list-infos-card"><%= @recette.redirection %></li>
+            </ul>
+          </div>
+          <%= cl_image_tag @recette.photo,class: "image_card" %>
+          <div class="contenu-card">
+            <p class="card-contenu">
+              <%= @recette.contenu %>
+            </p>
+            <% if policy(@recette).edit? %>
+              <%= link_to "Update",edit_recette_path(@recette), class: "btn btn-primary update-btn" %>
+            <% if policy(@recette).destroy? %>
+              <%= link_to "Delete",recette_path(@recette),method: :delete,data: {confirm: "are you sure?"}, class: "btn btn-danger" %>
+          <% end %>
+          </div>
+        </div>
+      <% end %>
+    </ul>
+    </div>
+    <div class="div-right">
+  <div >
+        <div >
+        <hr class="hr-2-px">
+      <p class="sous-title-div-right">-Subscribe and follow-</p>
+      <hr class="hr-1-px">
+      <ul class="list-resaeux-sociaux">
+        <li><a href="#"><i class="fab fa-instagram item-list-reseaux-sociaux"></i></a></li>
+        <li><a href="#"><i class="fab fa-facebook item-list-reseaux-sociaux-2"></i></a></li>
+        <li><a href="#"><i class="fab fa-twitter item-list-reseaux-sociaux"></i></a></li>
+      </ul>
+      <hr class="hr-2-px">
+      </div>
+      <div >
+        <p class="sous-title-div-right">-Recent posts-</p>
+        <hr class="hr-1-px">
+          <% last = @recettes.last(3) %>
+          <% last.each do |recette| %>
+          <div class="recent-post-right">
+          <%= cl_image_tag recette.photo,class: "image-card-right" %>
+          <div class="recets-post-right-link-div">
+            <p style="margin-bottom: 0px"><%= link_to recette.title,recette_path(recette),class: "recets-post-right-link" %></p>
+            <p class="date-right-recette"><% d = recette.created_at %> <%= d.strftime("%b %d,%Y") %></p>
+          </div>
+          </div>
+          <% end %>
+      </div>
+      <div>
+        <hr class="hr-2-px">
+      </div>
+  </div>
+    </div>
+    </div>
+  </div>
+  </div>
+</div>
