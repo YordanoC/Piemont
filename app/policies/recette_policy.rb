@@ -26,6 +26,8 @@ class RecettePolicy < ApplicationPolicy
 
 private
   def user_is_admin?
-    user.admin
+     if user
+      user.admin
+    end
   end
 end

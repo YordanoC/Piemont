@@ -1,15 +1,25 @@
 class RecettesController < ApplicationController
   skip_before_action :authenticate_user!
   before_action :set_recette, only: %i[show edit update destroy]
+  before_action :set_counter
   def index
     @recettes = policy_scope(Recette)
     authorize @recettes
+     respond_to do |format|
+      format.html
+      format.json { render json: { recettes: @recettes } }
+    end
   end
 
   def show
     @recettes = Recette.all
+    @review = Review.new
     authorize @recettes
     authorize @recette
+    respond_to do |format|
+      format.html
+      format.json { render json: { reviews: @recette.reviews } }
+    end
   end
 
   def new
@@ -47,6 +57,10 @@ class RecettesController < ApplicationController
   end
 
 private
+
+  def set_counter
+    @recette_count = Recette.count
+  end
 
   def set_recette
     @recette = Recette.find(params[:id])

@@ -7,14 +7,16 @@
   <div class="container">
     <div class="container-divs-right-left">
       <div class="div-cards" >
+
+
       <% @recettes.each do |recette| %>
         <div class="card">
-          <h1 class="text-center title-index-recette"><%= link_to recette.title, recette_path(recette),class: "title_recette"%></h1>
+          <h1 class="text-center title-index-recette"><%= link_to recette.title.capitalize, recette_path(recette),class: "title_recette"%></h1>
           <div>
             <ul class="list-infos-card">
               <li class="item-list-infos-card"><% d = recette.created_at %> <%= d.strftime("%b %d,%Y") %></li>
-              <li class="item-list-infos-card"><%= recette.redirection %></li>
-              <li class="item-list-infos-card"><%= recette.redirection %></li>
+              <li class="item-list-infos-card"><%= recette.redirection.capitalize %></li>
+              <li class="item-list-infos-card"><%= recette.reviews.count %> Avis</li>
             </ul>
           </div>
           <%= cl_image_tag recette.photo,class: "image_card" %>
@@ -32,7 +34,7 @@
               <%= link_to "Update",edit_recette_path(recette), class: "btn btn-primary update-btn" %>
             <% end %>
             <% if policy(recette).destroy? %>
-              <%= link_to "Delete",recette_path(recette),method: :delete,data: {confirm: "are you sure?"}, class: "btn btn-danger" %>
+              <%= link_to "Delete",recette_path(recette),method: :delete,data: {confirm: "are you sure?"},remote: true, class: "btn btn-danger" %>
           <% end %>
           </div>
         </div>

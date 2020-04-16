@@ -6,12 +6,12 @@
     <div class="container-divs-right-left">
       <div class="div-cards" >
         <div class="card">
-          <h1 class="text-center title-index-recette"><%= link_to @recette.title, recette_path(@recette),class: "title_recette"%></h1>
+          <h1 class="text-center title-index-recette"><%= link_to @recette.title.capitalize, recette_path(@recette),class: "title_recette"%></h1>
           <div>
             <ul class="list-infos-card">
               <li class="item-list-infos-card"><% d = @recette.created_at %> <%= d.strftime("%b %d,%Y") %></li>
-              <li class="item-list-infos-card"><%= @recette.redirection %></li>
-              <li class="item-list-infos-card"><%= @recette.redirection %></li>
+              <li class="item-list-infos-card"><%= @recette.redirection.capitalize %></li>
+              <li class="item-list-infos-card"><%= @recette.reviews.count %> Avis</li>
             </ul>
           </div>
           <%= cl_image_tag @recette.photo,class: "image_card" %>
@@ -28,6 +28,55 @@
         </div>
       <% end %>
     </ul>
+    <div>
+    <h2 class="commentaires-title">Leave a comentaire</h2>
+    <%= simple_form_for([ @recette, @review ], remote: true) do |f| %>
+  <%= f.input :content, as: :text %>
+  <%= f.input :note, collection: 1..5, prompt: "Select your note", selected: 3%>
+  <%= f.button :submit,class: "btn btn-primary" %>
+  <% end %>
+
+<div id="reviews">
+  <% if @recette.reviews.blank? %>
+    <span class="commentaires-title text-center"><p>Be the first to leave a review for <%= @recette.title %></p></span>
+  <% else %>
+      <div class="flex-center mt-4" data-controller="counter">
+  <div class="counter">
+    <span class="commentaires-title text-center" data-target="counter.count"> <p>Cette recette a <%=  @recette.reviews.count %> commentaires</p></span>
+  </div>
+</div>
+    <% @recette.reviews.reverse.each do |review| %>
+      <div class="d-flex div-review-show-recette">
+        <%= cl_image_tag review.user.photo,class: "avatar-review" %>
+        <div id="review-<%= review.id %>">
+        <p> <span class="name-user-review">
+          <%= review.user.prenom.capitalize %></span> --
+          <span class="date-review"><% re = review.created_at %> <%= re.strftime("%b %d,%Y") %></span>
+          <br>
+          <% if review.note < 5 %>
+          <% empty_star = 5 - review.note %>
+           <% review.note.times do %>
+                <i class="fas fa-star star-orange"></i>
+              <% end %>
+              <% empty_star.times do %>
+               <i class="far fa-star star-orange"></i>
+              <% end %>
+              <% else %>
+              <% review.note.times do %>
+                <i class="fas fa-star star-orange"></i>
+              <% end %>
+            <% end %>
+           <br>
+          <%= review.content %>
+        </p>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+</div>
+
+
+    </div>
     </div>
     <div class="div-right">
   <div >
@@ -45,6 +94,7 @@
       <div >
         <p class="sous-title-div-right">-Recent posts-</p>
         <hr class="hr-1-px">
+            <% if @recettes %>
           <% last = @recettes.last(3) %>
           <% last.each do |recette| %>
           <div class="recent-post-right">
@@ -54,6 +104,7 @@
             <p class="date-right-recette"><% d = recette.created_at %> <%= d.strftime("%b %d,%Y") %></p>
           </div>
           </div>
+          <% end %>
           <% end %>
       </div>
       <div>
