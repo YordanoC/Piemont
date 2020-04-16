@@ -9,8 +9,30 @@
           <h1 class="text-center title-index-recette"><%= link_to @recette.title.capitalize, recette_path(@recette),class: "title_recette"%></h1>
           <div>
             <ul class="list-infos-card">
-              <li class="item-list-infos-card"><% d = @recette.created_at %> <%= d.strftime("%b %d,%Y") %></li>
               <li class="item-list-infos-card"><%= @recette.redirection.capitalize %></li>
+              <li class="item-list-infos-card"><% d = @recette.created_at %> <%= d.strftime("%b %d,%Y") %></li>
+
+              <% total = 0 %>
+              <% @recette.reviews.each do |comment| %>
+                <% total += comment.note %>
+              <% end %>
+              <% total = total / @recette.reviews.count %>
+
+              <li class="item-list-infos-card">notes
+                      <% if total < 5 %>
+          <% empty_star = 5 - total %>
+           <% total.times do %>
+                <i class="fas fa-star star-orange"></i>
+              <% end %>
+              <% empty_star.times do %>
+               <i class="far fa-star star-orange"></i>
+              <% end %>
+              <% else %>
+              <% total.times do %>
+                <i class="fas fa-star star-orange"></i>
+              <% end %>
+            <% end %>
+              </li>
               <li class="item-list-infos-card"><%= @recette.reviews.count %> Avis</li>
             </ul>
           </div>
@@ -42,7 +64,8 @@
   <% else %>
       <div class="flex-center mt-4" data-controller="counter">
   <div class="counter">
-    <span class="commentaires-title text-center" data-target="counter.count"> <p>Cette recette a <%=  @recette.reviews.count %> commentaires</p></span>
+    <span class="commentaires-title text-center" data-target="counter.count"> <p>Cette recette a
+      <%= @recette.reviews.count %> commentaires</p></span>
   </div>
 </div>
     <% @recette.reviews.reverse.each do |review| %>
