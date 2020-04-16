@@ -5,11 +5,11 @@ class ReviewsController < ApplicationController
     authorize @recette
     authorize @review
     @review.recette = @recette
-    @review.user_id = current_user.id
+    @review.user = current_user
     if @review.save
       redirect_to recette_path(@recette, anchor: "review-#{@review.id}")
     else
-      render template: "recettes/show"
+      render "recettes/show"
     end
   end
 

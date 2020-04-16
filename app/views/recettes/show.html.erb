@@ -52,12 +52,15 @@
     </ul>
     <div>
     <h2 class="commentaires-title">Leave a comentaire</h2>
+    <% if current_user %>
     <%= simple_form_for([ @recette, @review ], remote: true) do |f| %>
   <%= f.input :content, as: :text %>
   <%= f.input :note, collection: 1..5, prompt: "Select your note", selected: 3%>
   <%= f.button :submit,class: "btn btn-primary" %>
   <% end %>
-
+  <% else %>
+    <p class="commentaires-title">Vous devez avoir une <%= link_to "compte", new_user_registration_path %> pour pouvoir ecrire un avis </p>
+  <% end %>
 <div id="reviews">
   <% if @recette.reviews.blank? %>
     <span class="commentaires-title text-center"><p>Be the first to leave a review for <%= @recette.title %></p></span>

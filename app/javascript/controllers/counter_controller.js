@@ -11,8 +11,7 @@ export default class extends Controller {
     fetch('/recettes', { headers: { accept: "application/json" }})
       .then(response => response.json())
       .then((data) => {
-        console.log(data.recettes.reviews)
-        this.countTarget.innerText = `Cette récette à ${data.reviews.count} commentaires`;
+        this.countTarget.innerText = `Cette récette à ${data.reviews.length} commentaires`;
       });
   }
 }
