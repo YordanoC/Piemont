@@ -4,6 +4,7 @@ class RecettePolicy < ApplicationPolicy
       scope.all
     end
   end
+
   def index?
     true
   end
@@ -20,14 +21,13 @@ class RecettePolicy < ApplicationPolicy
     user_is_admin?
   end
 
-   def destroy?
+  def destroy?
     user_is_admin?
   end
-
 private
   def user_is_admin?
-     if user
-      user.admin
-    end
+    if user
+    user.admin
   end
+end
 end

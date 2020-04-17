@@ -1,4 +1,4 @@
-    <% if policy(Recette).new? %>
+    <% if current_user.admin %>
   <%= link_to "new-recette",new_recette_path,class: "btn btn-primary" %>
     <% end %>
 <h1 class="text-center title-recettes">Recettes</h1>
@@ -16,28 +16,29 @@
             <ul class="list-infos-card">
               <li class="item-list-infos-card"><%= recette.redirection.capitalize %></li>
               <li class="item-list-infos-card"><% d = recette.created_at %> <%= d.strftime("%b %d,%Y") %></li>
-
-              <% total = 0 %>
-              <% recette.reviews.each do |comment| %>
-                <% total += comment.note %>
-              <% end %>
-              <% total = total / recette.reviews.count %>
-
-              <li class="item-list-infos-card">notes
-                      <% if total < 5 %>
-          <% empty_star = 5 - total %>
-           <% total.times do %>
-                <i class="fas fa-star star-orange"></i>
-              <% end %>
-              <% empty_star.times do %>
-               <i class="far fa-star star-orange"></i>
-              <% end %>
+              <% if recette.reviews.count == 0 %>
               <% else %>
-              <% total.times do %>
-                <i class="fas fa-star star-orange"></i>
+                <% total = 0 %>
+                <% recette.reviews.each do |comment| %>
+                  <% total += comment.note %>
+                <% end %>
+                <% total = total / recette.reviews.count %>
+
+                <li class="item-list-infos-card">notes
+                        <% if total < 5 %>
+            <% empty_star = 5 - total %>
+             <% total.times do %>
+                  <i class="fas fa-star star-orange"></i>
+                <% end %>
+                <% empty_star.times do %>
+                 <i class="far fa-star star-orange"></i>
+                <% end %>
+                <% else %>
+                <% total.times do %>
+                  <i class="fas fa-star star-orange"></i>
+                <% end %>
               <% end %>
             <% end %>
-
 
 
               </li>
