@@ -38,7 +38,7 @@ gem 'redis', '~> 4.0'
 #mes gems
 gem 'pundit'
 gem 'cloudinary', '~> 1.9.1'
-gem 'carrierwave', '~> 1.2'
+gem 'carrierwave', '~> 1.3'
 gem 'turbolinks_render'
 
 # Reduces boot times through caching; required in config/boot.rb
